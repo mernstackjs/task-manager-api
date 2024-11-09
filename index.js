@@ -12,7 +12,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://task-mager-client.onrender.com"],
+    origin: ["https://task-mager-client.onrender.com"],
     credentials: true,
   })
 );
@@ -23,6 +23,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/api", router);
+
+app.get("/", (req, res) => {
+  res.json({ message: "Api health is good" });
+});
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
